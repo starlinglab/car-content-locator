@@ -194,7 +194,7 @@
     }
 
     function displayRanges_singularity(sectors) {
-      res = "<table><tr><th>CID</th><th>Deals</th></tr>";
+      res = "<table><tr><th>Piece CID</th><th>Deal</th></tr>";
 
       sectors.forEach((sector, index) => {
         res += `<tr><td><a target="_blank" href="https://cid.ipfs.tech/#${sector.cid}">${sector.cid}</a></td><td>`;
