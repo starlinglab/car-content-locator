@@ -65,14 +65,15 @@ async function showProviders(cid, div) {
   const results = await Promise.all(fetchPromises);
 
   // Remove loading message
-  div.innerHTML = "<h2>Providers</h2><div id=provider-list></div>";
-  let provList = document.getElementById("provider-list");
+  div.innerHTML =
+    "<h2>IPFS Copies</h2><table><tbody><tr><th>Indexer</th><th>No. Copies</th></tr>";
 
   results.forEach((result) => {
     if (result.success) {
-      provList.innerHTML += `<div class=provider onclick="window.open('${result.cidUrl}', '_blank');">${result.name}: ${result.providerCount}</div>`;
+      div.innerHTML += `<tr><td><a href="${result.cidUrl}>${result.name}</a></td><td><span class="deal">${result.providerCount}</span></td></tr>`;
     } else {
-      provList.innerHTML += `<div class=provider onclick="window.open('${result.cidUrl}', '_blank');">${result.name}: ${result.error}</div>`;
+      div.innerHTML += `<tr><td><a href="${result.cidUrl}>${result.name}</a></td><td>${result.error}</td></tr>`;
     }
   });
+  div.innerHTML += `</tbody></table>`;
 }
