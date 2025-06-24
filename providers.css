@@ -1,0 +1,17 @@
+#providers {
+  width: 100%;
+}
+#provider-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2em;
+  align-items: center;
+}
+.provider {
+  padding: 1em;
+  background-color: lightskyblue;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
