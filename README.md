@@ -4,6 +4,30 @@
 
 USC Explorer is a user interface built around the Singularity data preparation pipeline, designed specifically to support the USC data ingestion workflow. This tool streamlines the process of preparing, encrypting, and storing data files for long-term preservation through content-addressable storage.
 
+```mermaid
+flowchart LR
+    %% Data Input
+    A[/Collection of Files/] --> B[Pre-Preparation Step]
+    
+    %% Processing Pipeline
+    B --> C[/Encrypted Files + Validated Hashes/]
+    C --> D[Singularity: Preparation and Packing]
+    D --> E[/CAR Files/]
+    E --> F[Storage Provider: Store as Deals]
+    
+    %% Metadata Tracking
+    C --> H[Car-File Mapping]
+    
+    %% Final Storage
+    F --> G[/Stored Deals/]
+    
+    %% Styling
+    classDef process fill:#f9f,stroke:#333,stroke-width:2px
+    classDef data fill:#bbf,stroke:#333,stroke-width:1px
+    
+    class B,D,F,H process
+    class A,C,E,G data
+```
 ## Installation
 
 ### Prerequisites
