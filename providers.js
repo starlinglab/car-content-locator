@@ -1,9 +1,9 @@
 const providerData = [
-  { url: "https://delegated-ipfs.dev", name: "DHT+IPNI" },
   { url: "https://indexer.pinata.cloud", name: "Pinata" },
   { url: "https://routingv1.storacha.network", name: "Storacha" },
   // { url: "https://routingv1.filebase.io", name: "Filebase" }, // Doesn't have CORS
   { url: "https://cid.contact", name: "IPNI" }, // Already captured by delegated-ipfs.dev
+  { url: "https://delegated-ipfs.dev", name: "DHT+IPNI" },
 ];
 const TIMEOUT = 30_000; // ms
 
@@ -65,14 +65,15 @@ async function showProviders(cid, div) {
   const results = await Promise.all(fetchPromises);
 
   // Remove loading message
-  div.innerHTML = "<h2>Providers</h2><div id=provider-list></div>";
-  let provList = document.getElementById("provider-list");
+  let html = "<table><tbody><tr><th>Indexer</th><th>No. Copies</th></tr>";
 
   results.forEach((result) => {
     if (result.success) {
-      provList.innerHTML += `<div class=provider onclick="window.open('${result.cidUrl}', '_blank');">${result.name}: ${result.providerCount}</div>`;
+      html += `<tr><td><a target="_blank" href="${result.cidUrl}">${result.name}</a></td><td><span class="deal">${result.providerCount}</span></td></tr>`;
     } else {
-      provList.innerHTML += `<div class=provider onclick="window.open('${result.cidUrl}', '_blank');">${result.name}: ${result.error}</div>`;
+      html += `<tr><td><a target="_blank" href="${result.cidUrl}">${result.name}</a></td><td>${result.error}</td></tr>`;
     }
   });
+  html += `</tbody></table>`;
+  div.innerHTML = html;
 }
