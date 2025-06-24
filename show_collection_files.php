@@ -173,7 +173,7 @@
 
         if (data["singularity"] && data["singularity"]['sectors']) {
           fileContent += `<b>File CID:</b> <a target="_blank" href="https://cid.ipfs.tech/#${data["singularity"]["cid"]}">${data["singularity"]["cid"]}</a><br>
-          <h2>Deals:</h2><br>
+          <h2>Deals:</h2>
           ${displayRanges_singularity(data['singularity']['sectors'])}`;
         }
         
@@ -204,15 +204,14 @@
               let deal=sector["deals"][index];
               if (deal["state"]=="active") {
                 let end_epoch=heightToUnix(deal["end_epoch"]);
-                status=`<a target="_blank" href="https://filecoin.tools/search?q=` + sector['cid'] + `"><span class="deal" title="Verified ${deal["last_verified_at"]} Expires: ${unixToHuman(end_epoch)}">✅ ${deal["deal_id"]}</span></a>`;
+                status=`<a target="_blank" href="https://filecoin.tools/search?q=` + sector['cid'] + `"><span class="deal" title="Verified ${deal["last_verified_at"]} Expires: ${unixToHuman(end_epoch)} Provider: ${deal["provider"]}">✅ ${deal["deal_id"]}<br></span></a>`;
               } else {
                 let end_epoch=heightToUnix(deal["end_epoch"]);
                 status=`<span class="dealred" title="Verified ${deal["last_verified_at"]} Expires: ${unixToHuman(end_epoch)}">❌ ${deal["deal_id"]}</span>`;
               }
-            deal_test=`${status} `
-          }
-
-        res += deal_test
+            deal_test=`${status} `         
+            res += deal_test
+      }
         res += `</td></tr>`;
       });
       res += `</table>`;
@@ -229,35 +228,6 @@
       return date.toLocaleString(); // Convert to human-readable format
     } 
     
-    function displayRanges_tar(ranges) {
-      res = "<table><tr><th>Tar File Name</th><th>CID</th><th>Deals</th><th>Filename</th></tr>";
-      
-      ranges.forEach((tar_file, index) => {
-        deal_test=""
-        console.log(tar_file.tar[0]);
-        for (let index = 0; index < tar_file.tar[0]["deals"].length; index++) {
-          let deals = tar_file.tar[0]["deals"][index];
-
-          let status="";
-          if (deals["state"]=="active") {
-            let end_epoch=heightToUnix(deals["end_epoch"]);
-            status=`<span class="deal" title="Verified ${deals["last_verified_at"]} Expires: ${unixToHuman(end_epoch)}">✅ ${deals["deal_id"]}</span>`;
-          } else {
-            let end_epoch=heightToUnix(deals["end_epoch"]);
-            status=`<span class="dealred" title="Verified ${deals["last_verified_at"]} Expires: ${unixToHuman(end_epoch)}">❌ ${deals["deal_id"]}</span>`;
-          }
-          deal_test=`${status} `
-          console.log(deals);
-        }
-
-        console.log(tar_file.tar);
-        res += `<tr><td>${tar_file.tar_file}</td><td><span class="truncate-text">${tar_file.tar[0].cid}</span></td><td>${deal_test}</td><td>${tar_file.file_within_tar}</td></tr>`;
-      });
-      
-      res += `</table>`;
-      return res;
-    }
-
     function formatBytes(bytes, decimals = 2) {
       if (bytes === 0) return '0 B';
       const k = 1024;
