@@ -156,7 +156,7 @@
         const data = await response.json();
 
         let fileContent = `
-          <h2>File Information</h2><br>
+          <h2>File Information</h2>
           <b>ID:</b> ${data["relative_path"]}<br>
           <b>SHA1:</b> ${data["sha1"]}<br>
         `;
