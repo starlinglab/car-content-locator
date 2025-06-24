@@ -76,7 +76,7 @@ CREATE TABLE `usc_data` (
 
 Stores details about encrypted files:
 
-```php
+```sql
 CREATE TABLE `usc_files` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `relative_path` text DEFAULT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE `usc_files` (
 ### File Range Car Table
 Maps file ranges to CAR files:
 
-```php
+```sql
 CREATE TABLE `file_range_car` (
   `file_range_id` int(11) DEFAULT NULL,
   `car_id` int(11) DEFAULT NULL,
