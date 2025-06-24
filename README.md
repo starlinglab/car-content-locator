@@ -20,13 +20,6 @@ flowchart LR
     
     %% Final Storage
     F --> G[/Stored Deals/]
-    
-    %% Styling
-    classDef process fill:#f9f,stroke:#333,stroke-width:2px
-    classDef data fill:#bbf,stroke:#333,stroke-width:1px
-    
-    class B,D,F,H process
-    class A,C,E,G data
 ```
 ## Installation
 
