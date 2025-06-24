@@ -156,12 +156,13 @@
         const data = await response.json();
 
         let fileContent = `
-          <h2>${data["relative_path"]}</h2><br>
+          <h2>File Information</h2><br>
+          <b>ID:</b> ${data["relative_path"]}<br>
           <b>SHA1:</b> ${data["sha1"]}<br>
         `;
         
         if (data["ipfs_cid"]) {
-          fileContent += `<b>IPFS CID:</b> <a target="_blank" href="https://cid.ipfs.tech/#${data["ipfs_cid"]}">${data["ipfs_cid"]}</a><br>`;
+          fileContent += `<b>CID (Kubo):</b> <a target="_blank" href="https://cid.ipfs.tech/#${data["ipfs_cid"]}">${data["ipfs_cid"]}</a><br>`;
         }
         
         if (data["key_fp"]) {
@@ -172,15 +173,15 @@
         }
 
         if (data["singularity"] && data["singularity"]['sectors']) {
-          fileContent += `<b>File CID:</b> <a target="_blank" href="https://cid.ipfs.tech/#${data["singularity"]["cid"]}">${data["singularity"]["cid"]}</a><br>
-          <h2>Deals:</h2>
+          fileContent += `<b>CID (Singularity):</b> <a target="_blank" href="https://cid.ipfs.tech/#${data["singularity"]["cid"]}">${data["singularity"]["cid"]}</a><br>
+          <h2>Filecoin Deals</h2>
           ${displayRanges_singularity(data['singularity']['sectors'])}`;
         }
         
         if (data["ipfs_cid"]) {
-          fileContent += `<h2>IPFS:</h2><br>
-          <a href="https://w3s.link/ipfs/${data['ipfs_cid']}/">View on W3S</a>
-          <div id="providers"></div>`;
+          fileContent += `<h2>IPFS Copies</h2>
+          <div id="providers"></div>
+          <a href="https://w3s.link/ipfs/${data['ipfs_cid']}/">View on IPFS</a>`;
           document.getElementById('file-content').innerHTML = fileContent;
           showProviders(data["ipfs_cid"], document.getElementById("providers")); // Runs async
         } else {
