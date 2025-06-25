@@ -73,7 +73,7 @@ while ($row = $result2->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USC Data Overview</title>
+    <title>Data Overview</title>
     <style>
         :root {
             --primary-color: #3a86ff;
@@ -165,15 +165,13 @@ while ($row = $result2->fetch_assoc()) {
 </head>
 <body>
     <div class="container">
-        <h1>USC Data Overview</h1>
+        <h1>Data Overview</h1>
         
         <table>
             <thead>
                 <tr>
                     <th>Title ID</th>
                     <th>Total Files</th>
-                    <th>Pre-Prepared</th>
-                    <th>Providers</th>
                 </tr>
             </thead>
             <tbody>
@@ -189,9 +187,7 @@ while ($row = $result2->fetch_assoc()) {
                 
                 echo "<tr>";
                 echo "<td><a href='show_collection_files.php?collection={$titleId}'>{$titleId}</a></td>";
-                echo "<td>{$totalCount}</td>";
                 echo "<td>{$preparedCount}</td>";
-                echo "<td><span class='no-data'>View details</span></td>";
                 // To enable provider badges, uncomment and replace the above line:
                 /*
                 echo "<td>";
