@@ -1,6 +1,6 @@
 # CAR Content Locator
 
-Originally developed for USC (University of Southern California) Libraries to keep track of private files stored on the Filecoin network and explore Deal information, the CAR Content Locator now supports:
+Originally developed for USC (University of Southern California) Libraries to keep track of private files stored on the Filecoin network and to explore Deal information, the CAR Content Locator now supports:
 
 - Storing file metadata
 - Storing file location within a Piece and Deal information on the Filecoin network (requires Singularity)
