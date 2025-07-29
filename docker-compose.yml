@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    volumes:
+      - ./_config.php:/var/www/html/_config.php
+    networks:
+      - car-locator-network
+
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpassword
+      MARIADB_DATABASE: singularity
+      MARIADB_USER: caruser
+      MARIADB_PASSWORD: carpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - car-locator-network
+
+volumes:
+  mariadb_data:
+
+networks:
+  car-locator-network:
+    driver: bridge
