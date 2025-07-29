@@ -12,14 +12,36 @@ Originally developed for USC (University of Southern California) Libraries to ke
 
 ## Installation
 
-### Prerequisites
+### Option 1: Docker Compose (Recommended)
+
+1. Clone or download the CAR Content Locator files
+2. Run the application with Docker:
+   ```bash
+   docker-compose up -d
+   ```
+3. Access the application at `http://localhost:8080`
+4. MariaDB is accessible on port 3306 with:
+   - Database: `singularity`
+   - Username: `caruser`
+   - Password: `carpassword`
+
+You'll need to populate the database by pointing Singularity at it.
+You can use the connection string for this:
+
+```
+export DATABASE_CONNECTION_STRING="mysql://caruser:carpassword@tcp(127.0.0.1:3306)/singularity?parseTime=true"
+```
+
+### Option 2: Manual Setup
+
+#### Prerequisites
 
 - LAMP stack (Linux, Apache, MySQL, PHP) or equivalent server environment
 - Singularity CLI tool installed and configured using MySQL
 - MySQL/MariaDB database server
 - PHP 7.4 or higher
 
-### Setup
+#### Setup
 
 1. Clone or download the CAR Content Locator files to your web server directory
 1. Create a `_config.php` file in the root directory with the following content:
@@ -86,6 +108,11 @@ CREATE TABLE `file_range_car` (
   KEY `idx_file_range_car_car_id` (`car_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
+
+## Mapping files to CARs
+
+You will need to run [singularity-mapping](https://github.com/starlinglab/singularity-mapping)
+on the database to provide the UI will all the data it needs.
 
 ## Usage in the USC Libraries' Filecoin Pipeline
 
