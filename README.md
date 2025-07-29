@@ -111,3 +111,20 @@ flowchart LR
 ```
 
 _* Data archived by USC Libraries is generally not publicly accessible, and not published to IPFS, so the IPFS features are not used by USC Libraries_
+
+## Adding your own IPFS providers
+
+When possible, the UI shows information about where the file is stored on the IPFS network and roughly how many copies of it exist.
+By editing [`providers.js`](./providers.js), you can add your own [delegated routing](https://docs.ipfs.tech/concepts/public-utilities/#delegated-routing) node.
+This could be used to provide visibiliy into your own private IPFS network, for example. 
+
+To do this, simply edit the `providerData` variable at the top of the file:
+
+```javascript
+const providerData = [
+  { url: "https://indexer.pinata.cloud", name: "Pinata" },
+  { url: "https://routingv1.storacha.network", name: "Storacha" },
+  // etc..
+  { url: "https://my.secret.indexer.com", name: "Secret Network" },
+];
+```
