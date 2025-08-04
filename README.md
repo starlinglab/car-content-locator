@@ -1,5 +1,7 @@
 # CAR Content Locator
 
+Explorer UI for tracking content stored in Content Addressable aRchives (CARs) on Filecoin and IPFS networks. [See demo.](https://usc-explorer.stg.starlinglab.org)
+
 Originally developed for USC (University of Southern California) Libraries to keep track of private files stored on the Filecoin network and to explore Deal information, the CAR Content Locator now supports:
 
 - Storing file metadata
